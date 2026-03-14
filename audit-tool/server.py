@@ -7,8 +7,9 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        url = request.form["url"]
+        url = request.form["url"].strip()
         report = analyze_website(url)
+
         score = 0
         if report["title"]:
             score += 20
@@ -20,7 +21,21 @@ def index():
             score += 20
         if report["word_count"] > 500:
             score += 20
-        return render_template("result.html", report=report, score=score)
+
+        # Colour class for score circle
+        if score >= 80:
+            score_class = "score-green"
+        elif score >= 40:
+            score_class = "score-amber"
+        else:
+            score_class = "score-red"
+
+        return render_template(
+            "result.html",
+            report=report,
+            score=score,
+            score_class=score_class,
+        )
     return render_template("index.html")
 
 

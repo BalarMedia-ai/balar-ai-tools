@@ -112,9 +112,9 @@ button:hover {
   opacity: 0.85;
 }
 
-.score-good   { background: #10b981; }
-.score-average { background: #f59e0b; }
-.score-poor   { background: #ef4444; }
+.score-green { background: #10b981; }
+.score-amber  { background: #f59e0b; }
+.score-red    { background: #ef4444; }
 
 /* ── Results List ── */
 .results-list {
@@ -124,7 +124,7 @@ button:hover {
 
 .results-list li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   padding: 12px 14px;
   border-radius: 8px;
@@ -179,4 +179,31 @@ button:hover {
 
 .back-link:hover {
   text-decoration: underline;
+}
+
+/* ── Detail text inside result rows ── */
+.detail {
+  font-size: 12px;
+  font-weight: 400;
+  opacity: 0.8;
+  margin-top: 3px;
+  word-break: break-word;
+}
+
+/* ── Audited URL ── */
+.audit-url {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 4px;
+  word-break: break-all;
+}
+
+/* ── Error message ── */
+.error-msg {
+  background: #fef2f2;
+  color: #991b1b;
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-size: 15px;
+  margin: 16px 0;
 }

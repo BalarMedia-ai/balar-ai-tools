@@ -10,34 +10,79 @@
   <div class="container">
     <div class="card">
       <div class="logo">Balar Media Group</div>
-      <h1>Your Website Score</h1>
 
-      <div class="score-circle {% if score >= 80 %}score-good{% elif score >= 40 %}score-average{% else %}score-poor{% endif %}">
-        {{ score }}<span>/100</span>
-      </div>
+      {% if report.error %}
+        <h1>Could Not Analyse Site</h1>
+        <p class="error-msg">⚠ {{ report.error }}</p>
+        <p style="color:#666;font-size:0.9rem;">The site may be blocking automated requests, or the URL may be incorrect.</p>
+      {% else %}
+        <h1>Your Website Score</h1>
+        <p class="audit-url">{{ report.fetch_url }}</p>
 
-      <ul class="results-list">
-        <li class="{{ 'pass' if report.title else 'fail' }}">
-          <span class="icon">{{ '✔' if report.title else '✘' }}</span>
-          Title Tag: {{ 'Present' if report.title else 'Missing' }}
-        </li>
-        <li class="{{ 'pass' if report.meta_description else 'fail' }}">
-          <span class="icon">{{ '✔' if report.meta_description else '✘' }}</span>
-          Meta Description: {{ 'Present' if report.meta_description else 'Missing' }}
-        </li>
-        <li class="{{ 'pass' if report.h1 else 'fail' }}">
-          <span class="icon">{{ '✔' if report.h1 else '✘' }}</span>
-          H1 Tag: {{ 'Present' if report.h1 else 'Missing' }}
-        </li>
-        <li class="{{ 'pass' if report.images_missing_alt < 5 else 'fail' }}">
-          <span class="icon">{{ '✔' if report.images_missing_alt < 5 else '✘' }}</span>
-          Images Missing Alt Tags: {{ report.images_missing_alt }}
-        </li>
-        <li class="{{ 'pass' if report.word_count > 500 else 'fail' }}">
-          <span class="icon">{{ '✔' if report.word_count > 500 else '✘' }}</span>
-          Word Count: {{ report.word_count }} {{ '(Good)' if report.word_count > 500 else '(Too low — aim for 500+)' }}
-        </li>
-      </ul>
+        <div class="score-circle {{ score_class }}">
+          {{ score }}<span>/100</span>
+        </div>
+
+        <ul class="results-list">
+
+          <li class="{{ 'pass' if report.title else 'fail' }}">
+            <span class="icon">{{ '✔' if report.title else '✘' }}</span>
+            <div>
+              <strong>Title Tag:</strong> {{ 'Present' if report.title else 'Missing' }}
+              {% if report.title_text %}
+                <div class="detail">{{ report.title_text }}</div>
+              {% endif %}
+            </div>
+          </li>
+
+          <li class="{{ 'pass' if report.meta_description else 'fail' }}">
+            <span class="icon">{{ '✔' if report.meta_description else '✘' }}</span>
+            <div>
+              <strong>Meta Description:</strong> {{ 'Present' if report.meta_description else 'Missing' }}
+              {% if report.meta_description_text %}
+                <div class="detail">{{ report.meta_description_text }}</div>
+              {% endif %}
+            </div>
+          </li>
+
+          <li class="{{ 'pass' if report.h1 else 'fail' }}">
+            <span class="icon">{{ '✔' if report.h1 else '✘' }}</span>
+            <div>
+              <strong>H1 Tag:</strong> {{ 'Present' if report.h1 else 'Missing' }}
+              {% if report.h1_text %}
+                <div class="detail">{{ report.h1_text }}</div>
+              {% endif %}
+            </div>
+          </li>
+
+          <li class="{{ 'pass' if report.images_missing_alt < 5 else 'fail' }}">
+            <span class="icon">{{ '✔' if report.images_missing_alt < 5 else '✘' }}</span>
+            <div>
+              <strong>Image Alt Tags:</strong>
+              {% if report.images_total == 0 %}
+                No images found
+              {% elif report.images_missing_alt == 0 %}
+                All {{ report.images_total }} images have alt text ✓
+              {% else %}
+                {{ report.images_missing_alt }} of {{ report.images_total }} images missing alt text
+              {% endif %}
+            </div>
+          </li>
+
+          <li class="{{ 'pass' if report.word_count > 500 else 'fail' }}">
+            <span class="icon">{{ '✔' if report.word_count > 500 else '✘' }}</span>
+            <div>
+              <strong>Word Count:</strong> {{ report.word_count }} words
+              {% if report.word_count > 500 %}
+                <div class="detail">Good — meets the 500+ word recommendation</div>
+              {% else %}
+                <div class="detail">Low — aim for 500+ words for better SEO</div>
+              {% endif %}
+            </div>
+          </li>
+
+        </ul>
+      {% endif %}
 
       <div class="cta-section">
         <h2>Want help improving this?</h2>
