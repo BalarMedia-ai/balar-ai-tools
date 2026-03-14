@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Website Audit — Balar Media Group</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="logo">Balar Media Group</div>
+      <h1>Free Website SEO Audit</h1>
+      <p class="subtitle">Enter your website URL below and get an instant SEO health check.</p>
+      <form method="post" action="/">
+        <input
+          type="url"
+          name="url"
+          placeholder="https://yourwebsite.com"
+          required
+        />
+        <button type="submit">Analyse Website</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,182 @@
+/* ── Balar Media Group — Audit Tool Styles ── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f0f2f5;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1a2e;
+}
+
+.container {
+  width: 100%;
+  max-width: 560px;
+  padding: 24px 16px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px 36px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+}
+
+.logo {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #4f46e5;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: #6b7280;
+  margin-bottom: 28px;
+}
+
+/* ── Form ── */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+input[type="url"],
+input[type="email"] {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #1a1a2e;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input[type="url"]:focus,
+input[type="email"]:focus {
+  border-color: #4f46e5;
+}
+
+button {
+  padding: 14px;
+  background: #4f46e5;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #4338ca;
+}
+
+/* ── Score Circle ── */
+.score-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
+  font-weight: 800;
+  margin: 20px auto 28px;
+  color: #ffffff;
+}
+
+.score-circle span {
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.score-good   { background: #10b981; }
+.score-average { background: #f59e0b; }
+.score-poor   { background: #ef4444; }
+
+/* ── Results List ── */
+.results-list {
+  list-style: none;
+  margin-bottom: 32px;
+}
+
+.results-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.results-list li.pass {
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.results-list li.fail {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.icon {
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* ── CTA Section ── */
+.cta-section {
+  border-top: 1.5px solid #f3f4f6;
+  padding-top: 28px;
+  margin-top: 8px;
+}
+
+.cta-section h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.cta-section p {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 18px;
+}
+
+/* ── Back Link ── */
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}

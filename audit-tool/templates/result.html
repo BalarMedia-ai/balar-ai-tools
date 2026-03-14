@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audit Results — Balar Media Group</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="logo">Balar Media Group</div>
+      <h1>Your Website Score</h1>
+
+      <div class="score-circle {% if score >= 80 %}score-good{% elif score >= 40 %}score-average{% else %}score-poor{% endif %}">
+        {{ score }}<span>/100</span>
+      </div>
+
+      <ul class="results-list">
+        <li class="{{ 'pass' if report.title else 'fail' }}">
+          <span class="icon">{{ '✔' if report.title else '✘' }}</span>
+          Title Tag: {{ 'Present' if report.title else 'Missing' }}
+        </li>
+        <li class="{{ 'pass' if report.meta_description else 'fail' }}">
+          <span class="icon">{{ '✔' if report.meta_description else '✘' }}</span>
+          Meta Description: {{ 'Present' if report.meta_description else 'Missing' }}
+        </li>
+        <li class="{{ 'pass' if report.h1 else 'fail' }}">
+          <span class="icon">{{ '✔' if report.h1 else '✘' }}</span>
+          H1 Tag: {{ 'Present' if report.h1 else 'Missing' }}
+        </li>
+        <li class="{{ 'pass' if report.images_missing_alt < 5 else 'fail' }}">
+          <span class="icon">{{ '✔' if report.images_missing_alt < 5 else '✘' }}</span>
+          Images Missing Alt Tags: {{ report.images_missing_alt }}
+        </li>
+        <li class="{{ 'pass' if report.word_count > 500 else 'fail' }}">
+          <span class="icon">{{ '✔' if report.word_count > 500 else '✘' }}</span>
+          Word Count: {{ report.word_count }} {{ '(Good)' if report.word_count > 500 else '(Too low — aim for 500+)' }}
+        </li>
+      </ul>
+
+      <div class="cta-section">
+        <h2>Want help improving this?</h2>
+        <p>Get a full audit report and personalised recommendations from our team.</p>
+        <form method="get" action="mailto:hello@balarmediagroup.com.au">
+          <input type="email" name="email" placeholder="Enter your email address" required />
+          <button type="submit">Send Me the Full Report</button>
+        </form>
+      </div>
+
+      <a href="/" class="back-link">← Audit another website</a>
+    </div>
+  </div>
+</body>
+</html>
